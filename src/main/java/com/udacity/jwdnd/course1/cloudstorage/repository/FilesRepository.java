@@ -1,11 +1,9 @@
 package com.udacity.jwdnd.course1.cloudstorage.repository;
 
 import com.udacity.jwdnd.course1.cloudstorage.entities.Files;
-import com.udacity.jwdnd.course1.cloudstorage.entities.Notes;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
-// FILEID  	FILENAME  	CONTENTTYPE  	FILESIZE  	USERID  	FILEDATA
 
 @Mapper
 public interface FilesRepository {

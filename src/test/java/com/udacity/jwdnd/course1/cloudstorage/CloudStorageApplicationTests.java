@@ -1,7 +1,5 @@
 package com.udacity.jwdnd.course1.cloudstorage;
 
-//package com.udacity.cloudstorage;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
@@ -16,10 +14,10 @@ import java.time.Duration;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class CloudStorageApplicationTests {
 
-	private static final String FIRST_NAME = "Test";
-	private static final String LAST_NAME = "Test";
-	private static final String USERNAME = "testusername";
-	private static final String PASSWORD = "testpassword";
+	private static final String FIRST_NAME = "ABC1";
+	private static final String LAST_NAME = "Test1";
+	private static final String USERNAME = "abctest1";
+	private static final String PASSWORD = "abcpassword";
 
 	@LocalServerPort
 	private int port;
@@ -44,20 +42,6 @@ class CloudStorageApplicationTests {
 	}
 
 	@Test
-	public void loginPageTest() throws InterruptedException {
-		driver.get("http://localhost:" + this.port + "/login");
-		Thread.sleep(1000);
-		Assertions.assertEquals("Login", driver.getTitle());
-	}
-
-	@Test
-	public void guestLoginTest() throws InterruptedException {
-		driver.get("http://localhost:" + this.port + "/home");
-		Thread.sleep(1000);
-		Assertions.assertEquals("Login", driver.getTitle());
-	}
-
-	@Test
 	public void fullFlowTest() throws InterruptedException {
 		signUpTest();
 		login();
@@ -76,6 +60,12 @@ class CloudStorageApplicationTests {
 	}
 
 	@Test
+	public void getLoginPage() {
+		driver.get("http://localhost:" + this.port + "/login");
+		Assertions.assertEquals("Login", driver.getTitle());
+	}
+
+	@Test
 	public void notesFlowTest() throws InterruptedException {
 		signUpTest();
 		login();
@@ -89,25 +79,21 @@ class CloudStorageApplicationTests {
 		Thread.sleep(500);
 
 		WebElement noteTitle = driver.findElement(By.id("note-title"));
-		noteTitle.sendKeys("TestNoteTitle");
+		noteTitle.sendKeys("NoteTitleTest");
 
 		WebElement noteDescription = driver.findElement(By.id("note-description"));
-		noteDescription.sendKeys("TestNoteDescription");
+		noteDescription.sendKeys("NoteDescriptionTest");
 
 		WebElement saveNote = driver.findElement(By.id("save-note"));
 		saveNote.click();
 		Thread.sleep(1000);
-
-//		WebElement homeReturn = driver.findElement(By.id("return-home"));
-//		homeReturn.click();
-//		Thread.sleep(500);
 
 		WebElement notesTab1 = driver.findElement(By.id("nav-notes-tab"));
 		notesTab1.click();
 		Thread.sleep(500);
 
 		WebElement savedNote = driver.findElement(By.cssSelector("td.note-title-row"));
-		Assertions.assertEquals("TestNoteTitle", savedNote.getText());
+		Assertions.assertEquals("NoteTitleTest", savedNote.getText());
 		Thread.sleep(500);
 
 		WebElement editNote = driver.findElement(By.cssSelector("button.edit-note"));
@@ -120,25 +106,16 @@ class CloudStorageApplicationTests {
 		saveNote1.click();
 		Thread.sleep(1000);
 
-
-//		WebElement homeReturn1 = driver.findElement(By.id("return-home"));
-//		homeReturn1.click();
-//		Thread.sleep(1000);
-
 		WebElement notesTab2 = driver.findElement(By.id("nav-notes-tab"));
 		notesTab2.click();
 		Thread.sleep(500);
 
 		WebElement savedNote1	 = driver.findElement(By.cssSelector("td.note-title-row"));
-		Assertions.assertEquals("TestNoteTitleEdit", savedNote1.getText());
+		Assertions.assertEquals("NoteTitleTestEdit", savedNote1.getText());
 
 		WebElement deleteNote = driver.findElement(By.cssSelector("a.delete-note"));
 		deleteNote.click();
 		Thread.sleep(1000);
-
-//		WebElement homeReturn2 = driver.findElement(By.id("return-home"));
-//		homeReturn2.click();
-//		Thread.sleep(1000);
 
 		WebElement notesTab3 = driver.findElement(By.id("nav-notes-tab"));
 		notesTab3.click();
@@ -162,28 +139,24 @@ class CloudStorageApplicationTests {
 		Thread.sleep(500);
 
 		WebElement credentialUrl = driver.findElement(By.id("credential-url"));
-		credentialUrl.sendKeys("www.test.co");
+		credentialUrl.sendKeys("www.url.co");
 
 		WebElement credentialUsername = driver.findElement(By.id("credential-username"));
-		credentialUsername.sendKeys("testUsername");
+		credentialUsername.sendKeys("UsernameTest");
 
 		WebElement credentialPassword = driver.findElement(By.id("credential-password"));
-		credentialPassword.sendKeys("testPassword");
+		credentialPassword.sendKeys("PasswordTest");
 
 		WebElement credentialSubmit = driver.findElement(By.id("credential-submit"));
 		credentialSubmit.click();
 		Thread.sleep(1000);
-
-//		WebElement homeReturn = driver.findElement(By.id("return-home"));
-//		homeReturn.click();
-//		Thread.sleep(500);
 
 		WebElement credentialsTab1 = driver.findElement(By.id("nav-credentials-tab"));
 		credentialsTab1.click();
 		Thread.sleep(500);
 
 		WebElement savedNote = driver.findElement(By.cssSelector("td.saved-credential-url"));
-		Assertions.assertEquals("www.test.co", savedNote.getText());
+		Assertions.assertEquals("www.url.co", savedNote.getText());
 		Thread.sleep(500);
 
 		WebElement editNote = driver.findElement(By.cssSelector("button.edit-credential"));
@@ -191,30 +164,21 @@ class CloudStorageApplicationTests {
 		Thread.sleep(500);
 
 		WebElement credentialUrl1 = driver.findElement(By.id("credential-url"));
-		credentialUrl1.sendKeys(".in");
+		credentialUrl1.sendKeys(".to");
 		WebElement saveCredential = driver.findElement(By.id("credential-submit"));
 		saveCredential.click();
 		Thread.sleep(1000);
-
-
-//		WebElement homeReturn1 = driver.findElement(By.id("return-home"));
-//		homeReturn1.click();
-//		Thread.sleep(1000);
 
 		WebElement notesTab2 = driver.findElement(By.id("nav-credentials-tab"));
 		notesTab2.click();
 		Thread.sleep(500);
 
 		WebElement savedCredential	 = driver.findElement(By.cssSelector("td.saved-credential-url"));
-		Assertions.assertEquals("www.test.co.in", savedCredential.getText());
+		Assertions.assertEquals("www.url.co.to", savedCredential.getText());
 
 		WebElement deleteCredential = driver.findElement(By.cssSelector("a.delete-credential"));
 		deleteCredential.click();
 		Thread.sleep(1000);
-
-//		WebElement homeReturn2 = driver.findElement(By.id("return-home"));
-//		homeReturn2.click();
-//		Thread.sleep(1000);
 
 		WebElement credentialTab3 = driver.findElement(By.id("nav-credentials-tab"));
 		credentialTab3.click();

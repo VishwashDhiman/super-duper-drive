@@ -1,8 +1,5 @@
 package com.udacity.jwdnd.course1.cloudstorage.entities;
-// FILEID  	FILENAME  	CONTENTTYPE  	FILESIZE  	USERID  	FILEDATA
 import lombok.Data;
-
-import java.sql.Blob;
 
 @Data
 public class Files {

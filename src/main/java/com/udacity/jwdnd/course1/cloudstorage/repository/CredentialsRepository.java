@@ -4,6 +4,7 @@ import com.udacity.jwdnd.course1.cloudstorage.entities.Credentials;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+
 @Mapper
 public interface CredentialsRepository {
 

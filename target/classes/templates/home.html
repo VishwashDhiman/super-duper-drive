@@ -112,7 +112,7 @@
                                                 Edit</button>
                                                 <a class="btn btn-danger delete-note" th:onclick="'window.location.href = \'' + @{/deleteNote?(id=${note.noteId})} + '\''">Delete</a>
                                             </td>
-                                            <th class="note-title-row" scope="row" th:text="${note.noteTitle}">Description</th>
+                                            <td class="note-title-row" scope="row" th:text="${note.noteTitle}">Description</td>
                                             <td th:text="${note.noteDescription}">Example Note Description </td>
                                         </tr>
                                     </div>
@@ -170,14 +170,14 @@
                                 <div th:each="credential : ${credentials}">
                                     <tr>
                                         <td>
-                                            <button type="button" class="btn btn-success"
+                                            <button type="button" class="btn btn-success edit-credential"
                                                     th:data-id="${credential.credentialId}" th:data-url="${credential.url}" th:data-name="${credential.userName}" th:data-password="${credential.password}"
                                                     onclick="showCredentialModal(this.getAttribute('data-id'), this.getAttribute('data-url'), this.getAttribute('data-name'), this.getAttribute('data-password'));">
                                                 <!--                                                        th:onclick="|showNoteModal('${note}')|"-->
                                                 Edit</button>
-                                            <a class="btn btn-danger" th:onclick="'window.location.href = \'' + @{/deleteCredential?(id=${credential.credentialId})} + '\''">Delete</a>
+                                            <a class="delete-credential btn btn-danger" th:onclick="'window.location.href = \'' + @{/deleteCredential?(id=${credential.credentialId})} + '\''">Delete</a>
                                         </td>
-                                        <th scope="row" th:text="${credential.url}">URL</th>
+                                        <td class="saved-credential-url" scope="row" th:text="${credential.url}">URL</td>
                                         <td th:text="${credential.userName}">UserName</td>
                                         <td th:text="${credential.encodedPassword}">Password</td>
                                     </tr>
